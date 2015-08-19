@@ -218,7 +218,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-htmlclean');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-http');
-
+  grunt.loadNpmTasks('grunt-git-describe');
   grunt.registerTask('lint', ['jshint']);
 
   grunt.registerTask('webappVer', function(){
@@ -336,8 +336,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('server', 'Start express server', function() {
-    require('./server.js').listen(5002, function () {
-      grunt.log.writeln('Web server running at http://localhost:5002.');
+    require('./server.js').listen(3000, function () {
+      grunt.log.writeln('Web server running at http://localhost:3000.');
     }).on('close', this.async());
   });
 

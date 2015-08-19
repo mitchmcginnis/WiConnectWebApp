@@ -71,11 +71,11 @@ App.Views.Cloud = Backbone.View.extend({
       return;
     }
     this.$el.html(this.template()).addClass('active');
-
+/*
     self.gohackme = new App.Views.GoHACKme({
       el: $('.gohackme'),
       controller: self.controller,
       device: self.device
-    });
+    });*/
   }
 });

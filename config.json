@@ -1,5 +1,5 @@
 {
-  "device": "12.34.56.78",
-  "localIP": "12.34.56.89",
-  "port": "5002"
+  "device": "mitchmodule.local",
+  "localIP": "192.168.1.80",
+  "port": "3000"
 }

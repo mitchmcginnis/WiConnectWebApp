@@ -128,7 +128,7 @@ App.Views.GPIO = Backbone.View.extend({
       var gpio = _.findWhere(self.device.gpio, {id: i});
 
       if(!gpio && !self.filter) {
-        tmpl = self.templates.default({id: i});
+          tmpl = self.templates.default({id: i});
       }
 
       //initialiazed gpio
