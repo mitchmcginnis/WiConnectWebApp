@@ -1,5 +1,8 @@
 # ACKme WiConnect WebApp
 
+##Getting Started
+See [Setup](docs/setup.md) documentation for brief setup tasks.
+
 ## Installation
 
 The WiConnect WebApp uses the following development tools:

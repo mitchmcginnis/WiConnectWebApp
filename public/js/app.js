@@ -51,7 +51,7 @@ var App = {
     });
 
     //leave the following line in place for local development with a remote device
-    self.device.set({host: "http://mitchmodule.local"});
+    self.device.set({host: "http://10.10.10.1"});
 
     self.device.init();
 
@@ -63,7 +63,7 @@ var App = {
       {el: 'system',            nav: 'System',          view: App.Views.System,           modes: ['wlan', 'softap', 'setup']},
       {el: 'firmware',          nav: 'Firmware',        view: App.Views.Firmware,         modes: ['wlan']},
       {el: 'cloud',             nav: 'Cloud Services',  view: App.Views.Cloud,            modes: ['wlan']},
-      {el: 'demo',             nav: 'Demo Services',  view: App.Views.Demo,            modes: ['wlan']}
+      {el: 'demo',             nav: 'Demo Services',  view: App.Views.Demo,            modes: ['wlan', 'softap']}
     ];
 
     //create menu nav items and content holders for each application view

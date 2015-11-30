@@ -8,6 +8,7 @@ module.exports = function(grunt) {
     jshint: {
       gui: ['public/js/*.js', 'public/js/**/*.js'],
       options: {
+        devel: true,
         curly: true,
         eqeqeq: true,
         immed: true,
@@ -191,7 +192,7 @@ module.exports = function(grunt) {
         options: {
           replacements: [{
             pattern: '/*deviceHost*/',
-            replacement: 'self.device.set({host: "http://<%= device.host %>"});'
+            replacement: 'self.device.set({host: "http://10.10.10.1"});'
           }]
         }
       },
@@ -205,7 +206,7 @@ module.exports = function(grunt) {
     }
   });
 
-
+  grunt.loadNpmTasks('grunt-git-describe');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-less');
@@ -218,7 +219,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-htmlclean');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-http');
-  grunt.loadNpmTasks('grunt-git-describe');
+
   grunt.registerTask('lint', ['jshint']);
 
   grunt.registerTask('webappVer', function(){
@@ -227,7 +228,7 @@ module.exports = function(grunt) {
     grunt.config.set('pkg', pkg);
 
     var config = grunt.file.readJSON('config.json');
-    grunt.config.set('device.host', config.device);
+    grunt.config.set('device.host', config.deviceAddress);
 
     // build webapp version date & hash into complied js
     grunt.file.write(
@@ -264,6 +265,8 @@ module.exports = function(grunt) {
 
     if(type === 'dev') {
       // set remote device host
+      var _config = grunt.file.readJSON('config.json');
+      grunt.config.set('device.host', _config.deviceAddress);
       hostTask = 'string-replace:dev';
     }
 
@@ -328,15 +331,15 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', function(){
     var config = grunt.file.readJSON('config.json');
 
-    grunt.config.set('device.host', config.device);
-    grunt.config.set('local.ip', config.localIP);
-    grunt.config.set('local.port', config.port);
+    grunt.config.set('device.host', config.deviceAddress);
+    grunt.config.set('local.ip', config.localDevelopmentIP);
+    grunt.config.set('local.port', config.localDevelopmentPort);
 
     grunt.task.run(['build', 'http:index', 'http:js', 'http:css', 'http:unauth']);
   });
 
   grunt.registerTask('server', 'Start express server', function() {
-    require('./server.js').listen(3000, function () {
+    require('./server.js').listen('3000', function () {
       grunt.log.writeln('Web server running at http://localhost:3000.');
     }).on('close', this.async());
   });

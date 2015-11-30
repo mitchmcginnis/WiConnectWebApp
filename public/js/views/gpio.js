@@ -187,7 +187,6 @@ App.Views.GPIO = Backbone.View.extend({
 
     if(this.controller.get('view') !== 'gpio-usage'){
       $(this.el).removeClass('active');
-
       return;
     }
 
